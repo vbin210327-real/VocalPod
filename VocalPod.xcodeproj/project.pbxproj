@@ -1,0 +1,566 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F971A1C8EB9A07650678ED3 /* SilenceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B53159CA59F7B83B053760A /* SilenceUITests.swift */; };
+		2B85254D1B12B2D9B186E330 /* Views/LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE3762E018EB1023872A9E /* Views/LibraryView.swift */; };
+		321B5D42FDEAE863A2C1FF16 /* TrackNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326579A9916754489D56E401 /* TrackNavigationTests.swift */; };
+		47A9E6866C34A49BD0081D75 /* Services/LibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76457192984C4D74CE40B89A /* Services/LibraryStore.swift */; };
+		4BF47F2916F20B540227824A /* MediaFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A35827992F99621A3222DD /* MediaFixture.swift */; };
+		50CE141A4AD26A5603674137 /* NowPlayingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9861A5D31CE8E95857CA250E /* NowPlayingUITests.swift */; };
+		56F5E1954B984E3B6B557EA1 /* Services/AudioImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79C175FF95206ED60A3F01 /* Services/AudioImporter.swift */; };
+		59979D9E98B1B950465D6BF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AAD1477D5182D66D4B03B3 /* Assets.xcassets */; };
+		71FEA278B1FBDFF8FC84BE6B /* Services/SilenceAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C346730AFAA65AC28F223B /* Services/SilenceAnalyzer.swift */; };
+		7DF4C4BF3A7B9DB203F2AEEC /* InterruptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3210D0B3D770B1AA557DE39 /* InterruptionTests.swift */; };
+		9995BAE0879DA6D501547449 /* Views/PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D1E6503797061B5F5CEEA /* Views/PlayerView.swift */; };
+		A82CD5F451C122BB2709A1D1 /* Models/AudioClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143AA41B087AC190B1B2181F /* Models/AudioClip.swift */; };
+		BC0B6E1B77A1348BA9CA1F46 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 26B2A637F7DC4079D5AB78A5 /* PrivacyInfo.xcprivacy */; };
+		BC5B9A6BA47894BDB743E76E /* Services/AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F785B594CA0449293DBDEDB9 /* Services/AudioPlayer.swift */; };
+		DA979985F4DBC974F1E9E556 /* VocalPodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73650621DC60192B32DC10 /* VocalPodUITests.swift */; };
+		E61A18B179A385D0FA671C21 /* SilenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD9E76FC8D78E9FF10DA587 /* SilenceTests.swift */; };
+		ED462D71C10586AFDDD6359A /* Views/PodStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181AF3AA834597BF06D46148 /* Views/PodStyle.swift */; };
+		FBEA5389629EAA323AF87523 /* VocalPodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224C46C951E501215717628 /* VocalPodTests.swift */; };
+		FEC0EF077782A2E3137F0DEC /* VocalPodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942171D51A481952B18DBD7 /* VocalPodApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0675BC9C8506F4A2AD327F98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6F4DA8D93E88A08220E03B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0002446D22539E617E17F6BC;
+			remoteInfo = VocalPod;
+		};
+		85DDE809110B5A726F6E323E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6F4DA8D93E88A08220E03B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0002446D22539E617E17F6BC;
+			remoteInfo = VocalPod;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C79C175FF95206ED60A3F01 /* Services/AudioImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AudioImporter.swift; sourceTree = "<group>"; };
+		0EE081FDFD29B831A56D3687 /* VocalPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VocalPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		143AA41B087AC190B1B2181F /* Models/AudioClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/AudioClip.swift; sourceTree = "<group>"; };
+		181AF3AA834597BF06D46148 /* Views/PodStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/PodStyle.swift; sourceTree = "<group>"; };
+		1AD9E76FC8D78E9FF10DA587 /* SilenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilenceTests.swift; sourceTree = "<group>"; };
+		1E669F5A23123902F9EAACCD /* VocalPodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VocalPodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26B2A637F7DC4079D5AB78A5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		28AAD1477D5182D66D4B03B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2EAE3762E018EB1023872A9E /* Views/LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/LibraryView.swift; sourceTree = "<group>"; };
+		326579A9916754489D56E401 /* TrackNavigationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackNavigationTests.swift; sourceTree = "<group>"; };
+		3D73650621DC60192B32DC10 /* VocalPodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalPodUITests.swift; sourceTree = "<group>"; };
+		48C346730AFAA65AC28F223B /* Services/SilenceAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/SilenceAnalyzer.swift; sourceTree = "<group>"; };
+		5E8D1E6503797061B5F5CEEA /* Views/PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/PlayerView.swift; sourceTree = "<group>"; };
+		7224C46C951E501215717628 /* VocalPodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalPodTests.swift; sourceTree = "<group>"; };
+		76457192984C4D74CE40B89A /* Services/LibraryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/LibraryStore.swift; sourceTree = "<group>"; };
+		78A35827992F99621A3222DD /* MediaFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFixture.swift; sourceTree = "<group>"; };
+		7B53159CA59F7B83B053760A /* SilenceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilenceUITests.swift; sourceTree = "<group>"; };
+		7B594B6DB375E1BF3F23CDD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C257E3B7A275BD107F07AF0 /* VocalPodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VocalPodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9861A5D31CE8E95857CA250E /* NowPlayingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingUITests.swift; sourceTree = "<group>"; };
+		A3210D0B3D770B1AA557DE39 /* InterruptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionTests.swift; sourceTree = "<group>"; };
+		E942171D51A481952B18DBD7 /* VocalPodApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalPodApp.swift; sourceTree = "<group>"; };
+		F785B594CA0449293DBDEDB9 /* Services/AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AudioPlayer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0750226003F5B3BC1C257ACC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0CBCF3309D501F9C0703908E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E02AD4B9CFED98E8ECC44BCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08664875A813D42A8BFDAB51 /* VocalPodTests */ = {
+			isa = PBXGroup;
+			children = (
+				A3210D0B3D770B1AA557DE39 /* InterruptionTests.swift */,
+				78A35827992F99621A3222DD /* MediaFixture.swift */,
+				1AD9E76FC8D78E9FF10DA587 /* SilenceTests.swift */,
+				326579A9916754489D56E401 /* TrackNavigationTests.swift */,
+				7224C46C951E501215717628 /* VocalPodTests.swift */,
+			);
+			path = VocalPodTests;
+			sourceTree = "<group>";
+		};
+		1E78B559816E575FC0BDB29C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0EE081FDFD29B831A56D3687 /* VocalPod.app */,
+				1E669F5A23123902F9EAACCD /* VocalPodTests.xctest */,
+				7C257E3B7A275BD107F07AF0 /* VocalPodUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2EB2D8158FC6EF9EB19CB439 = {
+			isa = PBXGroup;
+			children = (
+				E77E1ABE3F92FD2296E5F45D /* VocalPod */,
+				08664875A813D42A8BFDAB51 /* VocalPodTests */,
+				7F7DBF9C0B3292D2A3F63F77 /* VocalPodUITests */,
+				1E78B559816E575FC0BDB29C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7F7DBF9C0B3292D2A3F63F77 /* VocalPodUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9861A5D31CE8E95857CA250E /* NowPlayingUITests.swift */,
+				7B53159CA59F7B83B053760A /* SilenceUITests.swift */,
+				3D73650621DC60192B32DC10 /* VocalPodUITests.swift */,
+			);
+			path = VocalPodUITests;
+			sourceTree = "<group>";
+		};
+		E77E1ABE3F92FD2296E5F45D /* VocalPod */ = {
+			isa = PBXGroup;
+			children = (
+				143AA41B087AC190B1B2181F /* Models/AudioClip.swift */,
+				0C79C175FF95206ED60A3F01 /* Services/AudioImporter.swift */,
+				F785B594CA0449293DBDEDB9 /* Services/AudioPlayer.swift */,
+				76457192984C4D74CE40B89A /* Services/LibraryStore.swift */,
+				48C346730AFAA65AC28F223B /* Services/SilenceAnalyzer.swift */,
+				2EAE3762E018EB1023872A9E /* Views/LibraryView.swift */,
+				5E8D1E6503797061B5F5CEEA /* Views/PlayerView.swift */,
+				181AF3AA834597BF06D46148 /* Views/PodStyle.swift */,
+				E942171D51A481952B18DBD7 /* VocalPodApp.swift */,
+				7B594B6DB375E1BF3F23CDD6 /* Info.plist */,
+				28AAD1477D5182D66D4B03B3 /* Assets.xcassets */,
+				26B2A637F7DC4079D5AB78A5 /* PrivacyInfo.xcprivacy */,
+			);
+			path = VocalPod;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0002446D22539E617E17F6BC /* VocalPod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D9F88131F34784A7166A6D2 /* Build configuration list for PBXNativeTarget "VocalPod" */;
+			buildPhases = (
+				0F3887D6F73C1A31C0E8B8F1 /* Sources */,
+				0CBCF3309D501F9C0703908E /* Frameworks */,
+				981D7E0BDE66E9B8AFA65FAB /* Resources */,
+				65DD3C2A1A4200D5C60A4136 /* Target 50 MB app size */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VocalPod;
+			productName = VocalPod;
+			productReference = 0EE081FDFD29B831A56D3687 /* VocalPod.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6E32BEF948C9FFC3B12532A3 /* VocalPodTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F8F5E34341A7D7C8E68C1AC /* Build configuration list for PBXNativeTarget "VocalPodTests" */;
+			buildPhases = (
+				BBDB4CFB88A0EE0F88DA1FC2 /* Sources */,
+				0750226003F5B3BC1C257ACC /* Frameworks */,
+				9929DB01D85B27232BDCC1D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F0EB08A865FFCE0259E8151 /* PBXTargetDependency */,
+			);
+			name = VocalPodTests;
+			productName = VocalPodTests;
+			productReference = 1E669F5A23123902F9EAACCD /* VocalPodTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D1EC89CF4CB2A67C1428733A /* VocalPodUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0296D7D9D9B849A7EE3B277 /* Build configuration list for PBXNativeTarget "VocalPodUITests" */;
+			buildPhases = (
+				D6612ADA46BC4E588A5823BB /* Sources */,
+				E02AD4B9CFED98E8ECC44BCD /* Frameworks */,
+				47E165CF5B75E2CA6466534F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2904E1FA1D8AED0446D279A4 /* PBXTargetDependency */,
+			);
+			name = VocalPodUITests;
+			productName = VocalPodUITests;
+			productReference = 7C257E3B7A275BD107F07AF0 /* VocalPodUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F6F4DA8D93E88A08220E03B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					0002446D22539E617E17F6BC = {
+						CreatedOnToolsVersion = 26.6;
+						DevelopmentTeam = V7439G9SY8;
+					};
+					6E32BEF948C9FFC3B12532A3 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 0002446D22539E617E17F6BC;
+					};
+					D1EC89CF4CB2A67C1428733A = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 0002446D22539E617E17F6BC;
+					};
+				};
+			};
+			buildConfigurationList = F1DAAA6CEA9B9F1AE2F1F44A /* Build configuration list for PBXProject "VocalPod" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = zh_CN;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				zh_CN,
+				en,
+				Base,
+			);
+			mainGroup = 2EB2D8158FC6EF9EB19CB439;
+			productRefGroup = 1E78B559816E575FC0BDB29C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0002446D22539E617E17F6BC /* VocalPod */,
+				6E32BEF948C9FFC3B12532A3 /* VocalPodTests */,
+				D1EC89CF4CB2A67C1428733A /* VocalPodUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		47E165CF5B75E2CA6466534F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		981D7E0BDE66E9B8AFA65FAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59979D9E98B1B950465D6BF8 /* Assets.xcassets in Resources */,
+				BC0B6E1B77A1348BA9CA1F46 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9929DB01D85B27232BDCC1D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		65DD3C2A1A4200D5C60A4136 /* Target 50 MB app size */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Target 50 MB app size";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(WRAPPER_NAME)/SizeReserve.dat",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/python3 \"$SRCROOT/Scripts/size_app_bundle.py\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F3887D6F73C1A31C0E8B8F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A82CD5F451C122BB2709A1D1 /* Models/AudioClip.swift in Sources */,
+				56F5E1954B984E3B6B557EA1 /* Services/AudioImporter.swift in Sources */,
+				BC5B9A6BA47894BDB743E76E /* Services/AudioPlayer.swift in Sources */,
+				47A9E6866C34A49BD0081D75 /* Services/LibraryStore.swift in Sources */,
+				71FEA278B1FBDFF8FC84BE6B /* Services/SilenceAnalyzer.swift in Sources */,
+				2B85254D1B12B2D9B186E330 /* Views/LibraryView.swift in Sources */,
+				9995BAE0879DA6D501547449 /* Views/PlayerView.swift in Sources */,
+				ED462D71C10586AFDDD6359A /* Views/PodStyle.swift in Sources */,
+				FEC0EF077782A2E3137F0DEC /* VocalPodApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBDB4CFB88A0EE0F88DA1FC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DF4C4BF3A7B9DB203F2AEEC /* InterruptionTests.swift in Sources */,
+				4BF47F2916F20B540227824A /* MediaFixture.swift in Sources */,
+				E61A18B179A385D0FA671C21 /* SilenceTests.swift in Sources */,
+				321B5D42FDEAE863A2C1FF16 /* TrackNavigationTests.swift in Sources */,
+				FBEA5389629EAA323AF87523 /* VocalPodTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6612ADA46BC4E588A5823BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50CE141A4AD26A5603674137 /* NowPlayingUITests.swift in Sources */,
+				0F971A1C8EB9A07650678ED3 /* SilenceUITests.swift in Sources */,
+				DA979985F4DBC974F1E9E556 /* VocalPodUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2904E1FA1D8AED0446D279A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0002446D22539E617E17F6BC /* VocalPod */;
+			targetProxy = 85DDE809110B5A726F6E323E /* PBXContainerItemProxy */;
+		};
+		7F0EB08A865FFCE0259E8151 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0002446D22539E617E17F6BC /* VocalPod */;
+			targetProxy = 0675BC9C8506F4A2AD327F98 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04B55D403C336FEB6EDA6D96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7439G9SY8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linfanbin.VocalPodTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VocalPod.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VocalPod";
+			};
+			name = Debug;
+		};
+		093C22FFE0977DC4FED57D92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7439G9SY8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linfanbin.VocalPodUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = VocalPod;
+			};
+			name = Debug;
+		};
+		1D8C0C6B1D22EA8C7669B263 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		62962DDFC8778E71CBAB453D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7439G9SY8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linfanbin.VocalPodUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = VocalPod;
+			};
+			name = Release;
+		};
+		7F533324A4AEBDBDD646AA37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7439G9SY8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linfanbin.VocalPodTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VocalPod.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VocalPod";
+			};
+			name = Release;
+		};
+		BFD315016DE16320F7E2120C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D920C7A015F78B790762656B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 17;
+				DEVELOPMENT_TEAM = V7439G9SY8;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VocalPod/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.4.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linfanbin.VocalPod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FA7B5C6E8165C322CA309E81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 17;
+				DEVELOPMENT_TEAM = V7439G9SY8;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VocalPod/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.4.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linfanbin.VocalPod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F8F5E34341A7D7C8E68C1AC /* Build configuration list for PBXNativeTarget "VocalPodTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04B55D403C336FEB6EDA6D96 /* Debug */,
+				7F533324A4AEBDBDD646AA37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D9F88131F34784A7166A6D2 /* Build configuration list for PBXNativeTarget "VocalPod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D920C7A015F78B790762656B /* Debug */,
+				FA7B5C6E8165C322CA309E81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0296D7D9D9B849A7EE3B277 /* Build configuration list for PBXNativeTarget "VocalPodUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				093C22FFE0977DC4FED57D92 /* Debug */,
+				62962DDFC8778E71CBAB453D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1DAAA6CEA9B9F1AE2F1F44A /* Build configuration list for PBXProject "VocalPod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFD315016DE16320F7E2120C /* Debug */,
+				1D8C0C6B1D22EA8C7669B263 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F6F4DA8D93E88A08220E03B7 /* Project object */;
+}

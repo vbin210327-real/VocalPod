@@ -1,0 +1,21 @@
+.DS_Store
+.build/
+DerivedData/
+BuildArtifacts/
+*.xcuserstate
+xcuserdata/
+*.xcresult
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.p12
+*.p8
+*.mobileprovision
+*.key
+
+# Local artwork and device-delivery evidence are not app source resources.
+/AppStore/
+/Verification/
+/*.png
