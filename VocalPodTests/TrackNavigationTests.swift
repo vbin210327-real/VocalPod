@@ -340,7 +340,7 @@ final class TrackNavigationTests: XCTestCase {
         }
     }
 
-    func testShufflePreviousReturnsToHistoryAndNextReturnsToFollowingTrack() async throws {
+    func testShuffleManualPreviousAndNextBothFollowUnplayedRandomQueue() async throws {
         let library = try await makeLibrary(count: 3)
         let player = AudioPlayer()
         defer { player.stop() }
@@ -349,16 +349,44 @@ final class TrackNavigationTests: XCTestCase {
         let first = library.clips[0]
         player.play(first, url: library.fileURL(for: first))
         try await waitUntil { player.isPlaying }
-        XCTAssertFalse(player.canPlayPreviousTrack)
+        XCTAssertTrue(player.canPlayPreviousTrack)
         player.playNextTrack()
         try await waitUntil { player.currentClip?.id != first.id && player.isPlaying }
         let secondID = try XCTUnwrap(player.currentClip?.id)
         XCTAssertTrue(MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled)
         player.playPreviousTrack()
-        try await waitUntil { player.currentClip?.id == first.id && player.isPlaying }
-        XCTAssertFalse(player.canPlayPreviousTrack)
+        try await waitUntil { player.currentClip?.id != secondID && player.isPlaying }
+        XCTAssertTrue(player.canPlayPreviousTrack)
+        let thirdID = try XCTUnwrap(player.currentClip?.id)
+        XCTAssertNotEqual(thirdID, first.id, "Previous in shuffle must select another unplayed random track, not undo Next.")
+        XCTAssertEqual(Set([first.id, secondID, thirdID]).count, 3)
+    }
+
+    func testRapidShuffleNextRequestsAdvancePastPendingSelection() async throws {
+        let library = try await makeLibrary(count: 2)
+        let player = AudioPlayer()
+        defer { player.stop() }
+        player.connectLibrary(library)
+        player.setPlaybackMode(.shuffle)
+        let first = library.clips[0]
+        player.play(first, url: library.fileURL(for: first))
+        try await waitUntil { player.isPlaying && player.currentTime > 0.05 }
+        player.seek(to: 0.8)
+        try await waitUntil { abs(player.currentTime - 0.8) < 0.1 }
         player.playNextTrack()
-        try await waitUntil { player.currentClip?.id == secondID && player.isPlaying }
+        player.playNextTrack()
+        // Two requests in a two-track shuffle must reach the original track
+        // at its beginning, rather than resolve both taps to the pending other track.
+        try await waitUntil { player.currentClip?.id != first.id || player.currentTime < 0.5 }
+        XCTAssertEqual(player.currentClip?.id, first.id)
+        XCTAssertLessThan(player.currentTime, 0.5)
+        player.seek(to: 0.8)
+        try await waitUntil { abs(player.currentTime - 0.8) < 0.1 }
+        player.playPreviousTrack()
+        player.playNextTrack()
+        try await waitUntil { player.currentClip?.id != first.id || player.currentTime < 0.5 }
+        XCTAssertEqual(player.currentClip?.id, first.id, "Mixed rapid buttons must also reserve two random selections.")
+        XCTAssertLessThan(player.currentTime, 0.5)
     }
 
     func testShuffleSingleTrackRestartsAndPausedEndStaysPaused() async throws {
@@ -375,7 +403,11 @@ final class TrackNavigationTests: XCTestCase {
             try await waitUntil { player.isPlaying && player.currentTime > 0.05 && player.currentTime < 0.8 }
             XCTAssertEqual(player.currentClip?.id, clip.id)
         }
-        XCTAssertFalse(player.canPlayPreviousTrack)
+        XCTAssertTrue(player.canPlayPreviousTrack)
+        player.seek(to: 0.8)
+        try await waitUntil { abs(player.currentTime - 0.8) < 0.1 }
+        player.playPreviousTrack()
+        try await waitUntil { player.currentTime < 0.5 }
         player.pause()
         player.seek(to: player.duration)
         try await Task.sleep(for: .milliseconds(300))
@@ -400,7 +432,7 @@ final class TrackNavigationTests: XCTestCase {
         try await waitUntil { player.currentClip?.id == added.id && player.isPlaying }
         try library.delete(first)
         player.refreshLibrary()
-        XCTAssertFalse(player.canPlayPreviousTrack)
+        XCTAssertTrue(player.canPlayPreviousTrack)
         XCTAssertTrue(player.canPlayNextTrack)
     }
 
@@ -432,6 +464,7 @@ final class TrackNavigationTests: XCTestCase {
         player.play(library.clips[0], url: library.fileURL(for: library.clips[0]))
         try await waitUntil { player.isPlaying }
         player.playNextTrack()
+        player.playPreviousTrack()
         player.pause()
         try await Task.sleep(for: .milliseconds(150))
         XCTAssertEqual(player.currentClip?.id, library.clips[0].id)

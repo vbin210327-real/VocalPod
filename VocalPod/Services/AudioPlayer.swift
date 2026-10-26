@@ -53,15 +53,16 @@ final class AudioPlayer {
     @ObservationIgnored private var pendingClipID: UUID?
     @ObservationIgnored private var trackChangeID = UUID()
     @ObservationIgnored private var shuffleRemaining: [UUID] = []
-    @ObservationIgnored private var shuffleHistory: [UUID] = []
     @ObservationIgnored private var shuffleKnownIDs: Set<UUID> = []
+    @ObservationIgnored private var pendingShufflePlan: [UUID]?
+    @ObservationIgnored private var pendingShuffleSteps = 0
 
     var canPlayNextTrack: Bool {
         playbackMode == .shuffle ? currentClip != nil && !(library?.clips.isEmpty ?? true) : adjacentClip(by: 1) != nil
     }
 
     var canPlayPreviousTrack: Bool {
-        playbackMode == .shuffle ? !shuffleHistory.isEmpty : adjacentClip(by: -1) != nil
+        playbackMode == .shuffle ? canPlayNextTrack : adjacentClip(by: -1) != nil
     }
 
     init() {
@@ -104,7 +105,7 @@ final class AudioPlayer {
         startPlayback(clip, url: url)
     }
 
-    private func startPlayback(_ clip: AudioClip, url: URL, navigationOffset: Int? = nil) {
+    private func startPlayback(_ clip: AudioClip, url: URL, continuingShuffle: Bool = false, restart: Bool = false) {
         errorMessage = nil
         guard FileManager.default.fileExists(atPath: url.path) else {
             errorMessage = "找不到这段声音文件，请重新导入录屏。"
@@ -113,21 +114,15 @@ final class AudioPlayer {
         sourceURL = url
         if currentClip?.id == clip.id, player.currentItem != nil {
             updateClip(clip)
+            if restart { seek(to: 0) }
             resume()
             return
         }
 
-        let previousID = currentClip?.id
         player.pause()
         itemGeneration = UUID()
         currentClip = clip
-        if playbackMode == .shuffle {
-            if let navigationOffset {
-                recordShuffleTransition(from: previousID, to: clip.id, offset: navigationOffset)
-            } else {
-                resetShuffle(startingAt: clip.id)
-            }
-        }
+        if playbackMode == .shuffle && !continuingShuffle { resetShuffle(startingAt: clip.id) }
         playbackStart = clip.playbackStart
         duration = clip.playbackDuration
         currentTime = 0
@@ -185,7 +180,6 @@ final class AudioPlayer {
         playbackStart = 0
         sourceURL = nil
         shuffleRemaining = []
-        shuffleHistory = []
         shuffleKnownIDs = []
         isInterrupted = false
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
@@ -225,8 +219,12 @@ final class AudioPlayer {
         if playbackMode == .shuffle {
             let ids = Set(library.clips.map(\.id))
             shuffleRemaining.removeAll { !ids.contains($0) }
-            shuffleHistory.removeAll { !ids.contains($0) }
-            shuffleRemaining.append(contentsOf: ids.subtracting(shuffleKnownIDs).shuffled())
+            let added = ids.subtracting(shuffleKnownIDs).shuffled()
+            shuffleRemaining.append(contentsOf: added)
+            if let plan = pendingShufflePlan {
+                pendingShufflePlan = Array(plan.prefix(pendingShuffleSteps))
+                    + plan.dropFirst(pendingShuffleSteps).filter { ids.contains($0) } + added
+            }
             shuffleKnownIDs = ids
             if shuffleRemaining.isEmpty { refillShuffle(avoiding: currentClip?.id) }
             if ids.count > 1, shuffleRemaining.first == currentClip?.id {
@@ -253,10 +251,21 @@ final class AudioPlayer {
 
     private func changeTrack(by offset: Int, automatically: Bool = false) {
         guard let library else { return }
+        let usesShuffle = playbackMode == .shuffle
         let next: AudioClip?
-        if playbackMode == .shuffle {
-            let id = offset < 0 ? shuffleHistory.last : shuffleRemaining.first
+        if usesShuffle {
+            // Both manual buttons and automatic advance consume the same random
+            // queue. Reserve each tap immediately, even while analysis is pending.
+            var plan = pendingShufflePlan ?? shuffleRemaining
+            if pendingShuffleSteps >= plan.count {
+                plan.append(contentsOf: shuffledRound(avoiding: plan.last ?? currentClip?.id))
+            }
+            guard plan.indices.contains(pendingShuffleSteps) else { return }
+            let id = plan[pendingShuffleSteps]
             next = library.clips.first { $0.id == id }
+            guard next != nil else { return }
+            pendingShufflePlan = plan
+            pendingShuffleSteps += 1
         } else {
             next = adjacentClip(by: offset)
         }
@@ -269,6 +278,7 @@ final class AudioPlayer {
         trackChangeTask = Task { @MainActor [weak self, weak library] in
             defer {
                 if let self, self.trackChangeID == requestID {
+                    self.clearPendingShuffle()
                     self.pendingClipID = nil
                     self.trackChangeTask = nil
                     self.updateRemoteAvailability()
@@ -284,7 +294,14 @@ final class AudioPlayer {
                 let analyzed = try await library.analyzeSilence(for: next)
                 try Task.checkCancellation()
                 guard let self, self.trackChangeID == requestID else { return }
-                self.startPlayback(analyzed, url: library.fileURL(for: analyzed), navigationOffset: offset)
+                self.startPlayback(analyzed, url: library.fileURL(for: analyzed),
+                                   continuingShuffle: usesShuffle && self.pendingShufflePlan != nil,
+                                   restart: true)
+                if usesShuffle, self.playbackMode == .shuffle,
+                   self.currentClip?.id == analyzed.id, let plan = self.pendingShufflePlan {
+                    self.shuffleRemaining = Array(plan.dropFirst(self.pendingShuffleSteps))
+                    if self.shuffleRemaining.isEmpty { self.refillShuffle(avoiding: analyzed.id) }
+                }
                 if automatically && self.currentClip?.id != analyzed.id {
                     self.pausePlayback()
                 }
@@ -308,6 +325,7 @@ final class AudioPlayer {
         trackChangeTask?.cancel()
         trackChangeTask = nil
         pendingClipID = nil
+        clearPendingShuffle()
     }
 
     func setRate(_ value: Float) {
@@ -337,35 +355,27 @@ final class AudioPlayer {
     }
 
     private func resetShuffle(startingAt id: UUID?) {
-        shuffleHistory = []
+        clearPendingShuffle()
         shuffleKnownIDs = Set(library?.clips.map(\.id) ?? [])
         shuffleRemaining = shuffleKnownIDs.filter { $0 != id }.shuffled()
         if shuffleRemaining.isEmpty { refillShuffle(avoiding: id) }
     }
 
     private func refillShuffle(avoiding id: UUID?) {
-        shuffleRemaining = (library?.clips.map(\.id) ?? []).shuffled()
-        if shuffleRemaining.count > 1, shuffleRemaining.first == id {
-            shuffleRemaining.swapAt(0, Int.random(in: 1..<shuffleRemaining.count))
-        }
+        shuffleRemaining = shuffledRound(avoiding: id)
     }
 
-    private func recordShuffleTransition(from previousID: UUID?, to id: UUID, offset: Int) {
-        if offset < 0 {
-            if shuffleHistory.last == id { shuffleHistory.removeLast() }
-            if let previousID, previousID != id {
-                shuffleRemaining.removeAll { $0 == previousID }
-                shuffleRemaining.insert(previousID, at: 0)
-            }
-        } else {
-            if let previousID, previousID != id {
-                shuffleHistory.append(previousID)
-                // Retain recent navigation without growing memory during endless playback.
-                if shuffleHistory.count > 100 { shuffleHistory.removeFirst(shuffleHistory.count - 100) }
-            }
-            shuffleRemaining.removeAll { $0 == id }
+    private func shuffledRound(avoiding id: UUID?) -> [UUID] {
+        var round = (library?.clips.map(\.id) ?? []).shuffled()
+        if round.count > 1, round.first == id {
+            round.swapAt(0, Int.random(in: 1..<round.count))
         }
-        if shuffleRemaining.isEmpty { refillShuffle(avoiding: id) }
+        return round
+    }
+
+    private func clearPendingShuffle() {
+        pendingShufflePlan = nil
+        pendingShuffleSteps = 0
     }
 
     /// Applies saved boundaries without modifying the underlying audio file.

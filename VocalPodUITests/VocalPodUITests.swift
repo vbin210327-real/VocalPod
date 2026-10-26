@@ -291,6 +291,44 @@ final class VocalPodUITests: XCTestCase {
         #endif
     }
 
+    func testShuffleManualNextAndPreviousBothSelectUnplayedTracks() throws {
+        app.launchArguments = ["--ui-testing", "--reset-library", "--seed-audio", "--seed-playlist"]
+        hasLaunched = true
+        app.launch()
+        let prepared = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in self.clipRows.count == 3 }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [prepared], timeout: 10), .completed)
+        clipRows.firstMatch.tap()
+        let title = app.staticTexts["player.title"]
+        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        let first = title.label
+        let play = app.buttons["player.play"]
+        expectValue("playing", on: play)
+        play.tap()
+        let mode = app.buttons["player.loop"]
+        mode.tap()
+        mode.tap()
+        expectValue("随机循环", on: mode)
+        XCTAssertTrue(app.buttons["player.previous"].isEnabled)
+        app.buttons["player.next"].tap()
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label != %@", first), object: title)
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed)
+        let second = title.label
+        expectValue("playing", on: play)
+        play.tap()
+        app.buttons["player.previous"].tap()
+        let changedAgain = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label != %@", second), object: title)
+        XCTAssertEqual(XCTWaiter.wait(for: [changedAgain], timeout: 5), .completed)
+        XCTAssertEqual(Set([first, second, title.label]).count, 3,
+                       "Both buttons must consume the same shuffle round instead of returning through history.")
+        expectValue("playing", on: play)
+        expectValue("随机循环", on: mode)
+        play.tap()
+        let shot = XCTAttachment(screenshot: app.screenshot())
+        shot.name = "Player-Shuffle-Manual"
+        shot.lifetime = .keepAlways
+        add(shot)
+    }
+
     func testShuffleModeAutomaticallyAdvancesWhileInBackground() throws {
         app.launchArguments = ["--ui-testing", "--reset-library", "--seed-audio", "--seed-playlist"]
         hasLaunched = true

@@ -128,13 +128,14 @@ for name, target_id, product_type, extension in target_specs:
     if name == "VocalPod":
         settings.update({
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
-            "CURRENT_PROJECT_VERSION": "17",
+            "CURRENT_PROJECT_VERSION": "18",
             "GENERATE_INFOPLIST_FILE": "NO",
             "INFOPLIST_FILE": "VocalPod/Info.plist",
-            "MARKETING_VERSION": "1.4.9",
+            "MARKETING_VERSION": "1.4.10",
             "ENABLE_USER_SCRIPT_SANDBOXING": "NO",
             "SUPPORTS_MACCATALYST": "NO",
             "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
+            "SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD": "NO",
             "SWIFT_EMIT_LOC_STRINGS": "NO",
         })
     else:
