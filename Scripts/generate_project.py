@@ -174,7 +174,8 @@ project_config = configuration_list("Project", {
               "GCC_PREPROCESSOR_DEFINITIONS": ["DEBUG=1", "$(inherited)"],
               "ONLY_ACTIVE_ARCH": "YES", "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
               "SWIFT_OPTIMIZATION_LEVEL": "-Onone"},
-    "Release": {"SWIFT_COMPILATION_MODE": "wholemodule", "SWIFT_OPTIMIZATION_LEVEL": "-O"},
+    "Release": {"DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+                "SWIFT_COMPILATION_MODE": "wholemodule", "SWIFT_OPTIMIZATION_LEVEL": "-O"},
 })
 objects[project_id] = dict(
     isa="PBXProject",
